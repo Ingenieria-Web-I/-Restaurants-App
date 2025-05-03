@@ -26,3 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     if (document.getElementById("lista-restaurantes")) mostrarRestaurantes();
   });
+
+  function guardarRestaurante(e) {
+    e.preventDefault();
+    const nombre = document.getElementById("nombre").value.trim();
+    const descripcion = document.getElementById("descripcion").value.trim();
+    const direccion = document.getElementById("direccion").value.trim();
+    const imagen = document.getElementById("imagen").value.trim() || "img/restaurante1.jpg";
+  
+    const nuevo = { nombre, descripcion, direccion, imagen };
+    const lista = JSON.parse(localStorage.getItem("restaurantes")) || [];
+    lista.push(nuevo);
+    localStorage.setItem("restaurantes", JSON.stringify(lista));
+    alert("Restaurante guardado correctamente.");
+    window.location.href = "index.html";
+  }
