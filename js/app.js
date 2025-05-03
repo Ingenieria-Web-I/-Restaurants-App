@@ -41,3 +41,20 @@ document.addEventListener("DOMContentLoaded", () => {
     alert("Restaurante guardado correctamente.");
     window.location.href = "index.html";
   }
+
+  function mostrarRestaurantes() {
+    const lista = JSON.parse(localStorage.getItem("restaurantes")) || [];
+    const contenedor = document.getElementById("lista-restaurantes");
+    contenedor.innerHTML = lista.map(r => `
+      <div class="col-md-4">
+        <div class="card mb-4">
+          <img src="${r.imagen}" class="card-img-top" alt="${r.nombre}">
+          <div class="card-body">
+            <h5 class="card-title">${r.nombre}</h5>
+            <p class="card-text">${r.descripcion}</p>
+            <p><strong>Dirección:</strong> ${r.direccion}</p>
+          </div>
+        </div>
+      </div>
+    `).join("");
+  }
